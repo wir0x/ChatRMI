@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import clazz.Chat;
 import interfaces.ChatInterface;
 
@@ -11,9 +5,6 @@ import javax.swing.*;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 
-/**
- * @author brunopaulino
- */
 public class ServerChat extends javax.swing.JFrame {
     private String url;
     private ChatInterface chat;
@@ -41,7 +32,7 @@ public class ServerChat extends javax.swing.JFrame {
         txtPort = new javax.swing.JTextField();
         btnStart = new javax.swing.JButton();
         lblStatus = new javax.swing.JLabel();
-        btnParar = new javax.swing.JButton();
+        btnStop = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,9 +52,9 @@ public class ServerChat extends javax.swing.JFrame {
 
         lblStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        btnParar.setText("Parar");
-        btnParar.setEnabled(false);
-        btnParar.addActionListener(new java.awt.event.ActionListener() {
+        btnStop.setText("Parar");
+        btnStop.setEnabled(false);
+        btnStop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnStopActionPerformed(evt);
             }
@@ -97,7 +88,7 @@ public class ServerChat extends javax.swing.JFrame {
                                                 .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addContainerGap())
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(btnParar, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(btnStop, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -116,7 +107,7 @@ public class ServerChat extends javax.swing.JFrame {
                                 .addGap(44, 44, 44)
                                 .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnParar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnStop, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lblStatus)
                                 .addGap(40, 40, 40))
@@ -127,7 +118,7 @@ public class ServerChat extends javax.swing.JFrame {
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {
         startServer();
-        this.btnParar.setEnabled(true);
+        this.btnStop.setEnabled(true);
         this.btnStart.setEnabled(false);
     }
 
@@ -209,7 +200,7 @@ public class ServerChat extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnStart;
-    private javax.swing.JButton btnParar;
+    private javax.swing.JButton btnStop;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

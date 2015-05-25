@@ -20,7 +20,6 @@ public class ClientChat extends javax.swing.JFrame implements ClientInterface, C
 
     private ChatInterface chat;
     private ClientInterface client;
-    private List<String> nomeClientes = new ArrayList<String>();
     private static final int MAX_USERS = 10;
     public String selectedUser = null;
     PrivateChat cp = new PrivateChat();
@@ -33,12 +32,12 @@ public class ClientChat extends javax.swing.JFrame implements ClientInterface, C
 
             if (client.getNome().equals(msg.getSender()) || client.getNome().equals(msg.getReceiver())) {
 
-                txtAreaMensagens.append(msg.getTextMessage() + "\n");
+                txtAreaMessage.append(msg.getTextMessage() + "\n");
                 cp.updateMessage(msg.getTextMessage());
 
             }
         } else {
-            txtAreaMensagens.append(msg.getTextMessage() + "\n");
+            txtAreaMessage.append(msg.getTextMessage() + "\n");
         }
     }
 
@@ -69,23 +68,23 @@ public class ClientChat extends javax.swing.JFrame implements ClientInterface, C
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtAreaMensagens = new javax.swing.JTextArea();
+        txtAreaMessage = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         userList = new javax.swing.JList();
         lblMessage = new javax.swing.JLabel();
-        txtMensagem = new javax.swing.JTextField();
-        btnEnviar = new javax.swing.JButton();
-        lblNome = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
-        btnConectar = new javax.swing.JButton();
+        txtMessage = new javax.swing.JTextField();
+        btnSendMessage = new javax.swing.JButton();
+        lblName = new javax.swing.JLabel();
+        txtNameClient = new javax.swing.JTextField();
+        btnConnected = new javax.swing.JButton();
         lblServer = new javax.swing.JLabel();
         lblPort = new javax.swing.JLabel();
-        txtServidor = new javax.swing.JTextField();
-        txtPorta = new javax.swing.JTextField();
+        txtServer = new javax.swing.JTextField();
+        txtPort = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnDesconectar = new javax.swing.JButton();
-        btnDesconectar1 = new javax.swing.JButton();
+        btnDisconnect = new javax.swing.JButton();
+        btnChatPrivate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -99,9 +98,9 @@ public class ClientChat extends javax.swing.JFrame implements ClientInterface, C
             }
         });
 
-        txtAreaMensagens.setColumns(20);
-        txtAreaMensagens.setRows(5);
-        jScrollPane1.setViewportView(txtAreaMensagens);
+        txtAreaMessage.setColumns(20);
+        txtAreaMessage.setRows(5);
+        jScrollPane1.setViewportView(txtAreaMessage);
 
         userList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = {"aguardando login"};
@@ -133,29 +132,29 @@ public class ClientChat extends javax.swing.JFrame implements ClientInterface, C
 
         lblMessage.setText("clazz.Message:");
 
-        txtMensagem.addActionListener(new java.awt.event.ActionListener() {
+        txtMessage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMessageActionPerformed(evt);
             }
         });
 
-        btnEnviar.setText("enviar");
-        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+        btnSendMessage.setText("enviar");
+        btnSendMessage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSendActionPerformed(evt);
             }
         });
 
-        lblNome.setText("Nombre:");
+        lblName.setText("Nombre:");
 
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
+        txtNameClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeActionPerformed(evt);
             }
         });
 
-        btnConectar.setText("Conectar");
-        btnConectar.addActionListener(new java.awt.event.ActionListener() {
+        btnConnected.setText("Conectar");
+        btnConnected.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logHandler(evt);
             }
@@ -165,7 +164,7 @@ public class ClientChat extends javax.swing.JFrame implements ClientInterface, C
 
         lblPort.setText("Puerto:");
 
-        txtServidor.addActionListener(new java.awt.event.ActionListener() {
+        txtServer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtServerActionPerformed(evt);
             }
@@ -175,17 +174,17 @@ public class ClientChat extends javax.swing.JFrame implements ClientInterface, C
 
         jLabel2.setText("Usuarios");
 
-        btnDesconectar.setText("Desconectar");
-        btnDesconectar.addActionListener(new java.awt.event.ActionListener() {
+        btnDisconnect.setText("Desconectar");
+        btnDisconnect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDisconnectActionPerformed(evt);
             }
         });
 
-        btnDesconectar1.setLabel("Privado");
-        btnDesconectar1.addActionListener(new java.awt.event.ActionListener() {
+        btnChatPrivate.setLabel("Privado");
+        btnChatPrivate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDisconnect1ActionPerformed(evt);
+                btnChatPrivateActionPerformed(evt);
             }
         });
 
@@ -202,25 +201,25 @@ public class ClientChat extends javax.swing.JFrame implements ClientInterface, C
                                                                 .addGroup(layout.createSequentialGroup()
                                                                         .addComponent(lblMessage)
                                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                        .addComponent(txtMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                        .addComponent(txtMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                                         .addComponent(lblServer)
-                                                                        .addComponent(lblNome)
+                                                                        .addComponent(lblName)
                                                                         .addComponent(lblPort))
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                        .addComponent(txtNome)
-                                                                        .addComponent(txtServidor)
-                                                                        .addComponent(txtPorta, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                                        .addComponent(txtNameClient)
+                                                                        .addComponent(txtServer)
+                                                                        .addComponent(txtPort, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jScrollPane2)
-                                                        .addComponent(btnConectar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(btnEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                                                        .addComponent(btnDesconectar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(btnDesconectar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                        .addComponent(btnConnected, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(btnSendMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                                                        .addComponent(btnDisconnect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(btnChatPrivate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel1)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -235,27 +234,27 @@ public class ClientChat extends javax.swing.JFrame implements ClientInterface, C
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(32, 32, 32)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(lblNome)
-                                                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(lblName)
+                                                        .addComponent(txtNameClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                         .addComponent(lblServer)
-                                                        .addComponent(txtServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                        .addComponent(txtServer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addContainerGap()
-                                                .addComponent(btnConectar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(btnConnected, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(btnDesconectar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(btnDisconnect, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                         .addComponent(lblPort)
-                                                        .addComponent(txtPorta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(txtPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGap(18, 36, Short.MAX_VALUE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(btnDesconectar1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(btnChatPrivate, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel1)
@@ -267,8 +266,8 @@ public class ClientChat extends javax.swing.JFrame implements ClientInterface, C
                                 .addGap(20, 20, 20)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(lblMessage)
-                                        .addComponent(txtMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtMessage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnSendMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(51, 51, 51))
         );
 
@@ -276,9 +275,9 @@ public class ClientChat extends javax.swing.JFrame implements ClientInterface, C
     }// </editor-fold>//GEN-END:initComponents
 
     private void logHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logHandler
-        String nameClient = txtNome.getText();
-        String server = txtServidor.getText().equals("") ? "localhost" : txtServidor.getText();
-        int port = txtPorta.getText().equals("") ? 1099 : Integer.parseInt(txtPorta.getText());
+        String nameClient = txtNameClient.getText();
+        String server = txtServer.getText().equals("") ? "localhost" : txtServer.getText();
+        int port = txtPort.getText().equals("") ? 1099 : Integer.parseInt(txtPort.getText());
 
         try {
 
@@ -321,10 +320,10 @@ public class ClientChat extends javax.swing.JFrame implements ClientInterface, C
 
             LOG.info("List of names users " + chat.getListNamesClients());
 
-            btnConectar.setEnabled(false);
-            txtNome.setEnabled(false);
-            txtServidor.setEnabled(false);
-            txtPorta.setEnabled(false);
+            btnConnected.setEnabled(false);
+            txtNameClient.setEnabled(false);
+            txtServer.setEnabled(false);
+            txtPort.setEnabled(false);
 
         } catch (Exception re) {
             LOG.warning("ERROR register client" + re.getMessage());
@@ -351,10 +350,10 @@ public class ClientChat extends javax.swing.JFrame implements ClientInterface, C
         int indexUser = userList.getSelectedIndex();
         try {
             if (this.userList.isSelectionEmpty()) {
-                this.chat.sendMessage(client.getNome(), null, txtMensagem.getText(), TypeMessageEnum.PUBLIC);
+                this.chat.sendMessage(client.getNome(), null, txtMessage.getText(), TypeMessageEnum.PUBLIC);
             } else {
                 String receiver = (String) this.userList.getSelectedValue();
-                this.chat.sendMessage(client.getNome(), receiver, txtMensagem.getText(), TypeMessageEnum.PRIVATE);
+                this.chat.sendMessage(client.getNome(), receiver, txtMessage.getText(), TypeMessageEnum.PRIVATE);
                 userList.setSelectedIndex(indexUser);
             }
 
@@ -363,7 +362,7 @@ public class ClientChat extends javax.swing.JFrame implements ClientInterface, C
             LOG.info("error in btnSend " + ex.getMessage());
             JOptionPane.showMessageDialog(null, "don't send message");
         }
-        txtMensagem.setText("");
+        txtMessage.setText("");
     }
 
     private void listUsersFocusGained(FocusEvent evt) {//GEN-FIRST:event_listUsuariosFocusGained
@@ -403,7 +402,7 @@ public class ClientChat extends javax.swing.JFrame implements ClientInterface, C
         // TODO add your handling code here:
     }//GEN-LAST:event_txtServidorActionPerformed
 
-    private void btnDisconnect1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesconectar1ActionPerformed
+    private void btnChatPrivateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesconectar1ActionPerformed
         // TODO add your handling code here:
 
 
@@ -457,24 +456,24 @@ public class ClientChat extends javax.swing.JFrame implements ClientInterface, C
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConectar;
-    private javax.swing.JButton btnDesconectar;
-    private javax.swing.JButton btnDesconectar1;
-    private javax.swing.JButton btnEnviar;
+    private javax.swing.JButton btnConnected;
+    private javax.swing.JButton btnDisconnect;
+    private javax.swing.JButton btnChatPrivate;
+    private javax.swing.JButton btnSendMessage;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblMessage;
-    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblPort;
     private javax.swing.JLabel lblServer;
     public javax.swing.JList userList;
-    public javax.swing.JTextArea txtAreaMensagens;
-    private javax.swing.JTextField txtMensagem;
-    private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtPorta;
-    private javax.swing.JTextField txtServidor;
+    public javax.swing.JTextArea txtAreaMessage;
+    private javax.swing.JTextField txtMessage;
+    private javax.swing.JTextField txtNameClient;
+    private javax.swing.JTextField txtPort;
+    private javax.swing.JTextField txtServer;
     // End of variables declaration//GEN-END:variables
 
 

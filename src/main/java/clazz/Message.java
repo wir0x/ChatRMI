@@ -1,23 +1,14 @@
-package clazz;/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package clazz;
 
 import enumerator.TypeMessageEnum;
 
 import java.io.Serializable;
 
-/**
- * @author Nelson Henrique
- */
 public class Message implements Serializable {
-    private static final int MSG_PUBLIC = 1;
-    private static final int MSG_PRIVATE = 2;
-    private static final int MSG_LOGIN = 3;
-    private static final int MSG_LOGOUT = 4;
 
-    private String sender, receiver, textMessage;
+    private String sender;
+    private String receiver;
+    private String textMessage;
     private TypeMessageEnum typeMessageEnum;
 
     public TypeMessageEnum getTypeMessageEnum() {
@@ -44,16 +35,16 @@ public class Message implements Serializable {
 
         switch (this.typeMessageEnum) {
             case LOGIN:
-                msg = "(" + sender + ") entro.";
+                msg = "(" + sender + ") inside.";
                 break;
             case LOGOUT:
-                msg = "(" + sender + ") escribio.";
+                msg = "(" + sender + ") wrote.";
                 break;
             case PUBLIC:
-                msg = "(" + sender + ") escribio: " + textMessage;
+                msg = "(" + sender + ") wrote: " + textMessage;
                 break;
             case PRIVATE:
-                msg = "(" + sender + ") para (" + receiver + ") escribio: " + textMessage;
+                msg = "(" + sender + ") for (" + receiver + ") wrote: " + textMessage;
                 break;
         }
         this.textMessage = msg;

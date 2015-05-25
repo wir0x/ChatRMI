@@ -1,8 +1,4 @@
-package interfaces;/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package interfaces;
 
 import clazz.Message;
 import enumerator.TypeMessageEnum;
@@ -11,17 +7,15 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
-/**
- * @author Nelson Henrique
- */
 public interface ChatInterface extends Remote {
-    void sendMessage(String remetente, String destinatario, String texto, TypeMessageEnum tipo) throws RemoteException;
 
-    void registrarObserver(ClientInterface o) throws RemoteException;
+    void sendMessage(String sender, String receiver, String textMessage, TypeMessageEnum typeMessageEnum) throws RemoteException;
 
-    void removeClient(String cli) throws RemoteException;
+    void registrarObserver(ClientInterface clientInterface) throws RemoteException;
 
-    void removerObserver(ClientInterface o) throws RemoteException;
+    void removeClient(String nameClient) throws RemoteException;
+
+    void removerObserver(ClientInterface clientInterface) throws RemoteException;
 
     void notifyObserver() throws RemoteException;
 
@@ -31,5 +25,5 @@ public interface ChatInterface extends Remote {
 
     List<String> getListNamesClients() throws RemoteException;
 
-    String registerClient(String cli) throws RemoteException;
+    String registerClient(String nameClient) throws RemoteException;
 }
